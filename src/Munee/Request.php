@@ -66,14 +66,14 @@ class Request
      * @var array
      */
     protected $allowedParams = array();
-    
+
     /**
      * Stores the string of raw files passed in from $_GET
      *
      * @var string
      */
     protected $rawFiles;
-    
+
     /**
      * Constructor
      *
@@ -87,12 +87,12 @@ class Request
 
         $this->rawParams = $_GET;
     }
-    
+
     /**
      * Sets the document root.
      *
      * @param string $path
-     * 
+     *
      * @return object
      */
     public function setWebroot($path)
@@ -107,7 +107,7 @@ class Request
      *
      * @param mixed $key
      * @param mixed $value
-     * 
+     *
      * @return object
      */
     public function setRawParam($key, $value = null)
@@ -130,12 +130,12 @@ class Request
     {
         return $this->rawParams;
     }
-    
+
     /**
      * Sets the $rawFiles.
      *
      * @param string $files
-     * 
+     *
      * @return object
      */
     public function setFiles($files)
@@ -185,7 +185,8 @@ class Request
             // Remove sub-folder if in the path, it shouldn't be there.
             $v = str_replace(SUB_FOLDER, '', $v);
 
-            return $webroot . $v;
+            // return $webroot . $v;
+            return $v;
         }, explode(',', $this->rawFiles));
     }
 

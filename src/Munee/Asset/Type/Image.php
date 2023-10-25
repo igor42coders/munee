@@ -26,7 +26,7 @@ class Image extends Type
      */
     protected $options = array(
         // How many filters can be done within the `allowedFiltersTimeLimit`
-        'numberOfAllowedFilters' => 3,
+        'numberOfAllowedFilters' => 300,
         // Number of seconds - default is 5 minutes
         'allowedFiltersTimeLimit' => 300,
         // Should the referrer be checked for security
@@ -131,12 +131,12 @@ class Image extends Type
     protected function checkReferrer()
     {
         if (! isset($_SERVER['HTTP_REFERER'])) {
-            throw new ErrorException('Direct image manipulation is not allowed.');
+            // throw new ErrorException('Direct image manipulation is not allowed.');
         }
 
         $referrer = preg_replace('%^https?://%', '', $_SERVER['HTTP_REFERER']);
         if (! preg_match("%^{$_SERVER['SERVER_NAME']}%", $referrer)) {
-            throw new ErrorException('Referrer does not match the correct domain.');
+            // throw new ErrorException('Referrer does not match the correct domain.');
         }
     }
 

@@ -63,7 +63,7 @@ abstract class Type
      * @var \Munee\Request
      */
     protected $request;
-    
+
     /**
      * Reference to the \Munee\Response class
      *
@@ -226,11 +226,13 @@ abstract class Type
     {
         // Check if the file exists
         if (! file_exists($originalFile)) {
-            throw new NotFoundException('File does not exist: ' . str_replace($this->request->webroot, '', $originalFile));
+            // throw new NotFoundException('File does not exist: ' . str_replace($this->request->webroot, '', $originalFile));
         }
 
         // Copy the original file to the cache location
-        copy($originalFile, $cacheFile);
+        // copy($originalFile, $cacheFile);
+        $originalFile = $_ENV['MINIO_ENDPOINT'] . '/' . $_ENV['MINIO_BUCKET'] . '/' . ltrim($originalFile, '/');
+        file_put_contents($cacheFile, file_get_contents($originalFile));
     }
 
     /**
